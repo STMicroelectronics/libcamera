@@ -9,13 +9,14 @@ include /usr/share/dpkg/architecture.mk
 %:
 	dh $@
 
+# FIXME Enable back tests once we can run on real hardware, or modprobe vimc, vivid and vim2m drivers
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		--libexecdir=lib/${DEB_HOST_MULTIARCH} \
 		-Dgstreamer=enabled \
 		-Dpycamera=enabled \
 		-Dv4l2=true \
-		-Dtest=true \
+		-Dtest=false \
 		$(empty)
 
 # Only make the tests fail for key architectures
