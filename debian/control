@@ -55,24 +55,6 @@ Description: complex camera support library (development files)
  .
  This package provides the necessary files needed for development
 
-Package: libcamera-doc
-Section: doc
-Architecture: all
-Build-Profiles: <!nodoc>
-Depends: libjs-jquery,
-         libjs-sphinxdoc,
-         libjs-underscore,
-         ${misc:Depends},
-         ${shlibs:Depends}
-Recommends: libcamera-dev
-Multi-Arch: foreign
-Description: complex camera support library (documentation)
- libcamera is a complex camera support library which handles low-level
- control of the camera devices, providing a unified higher-level
- programming interface to the applications.
- .
- This package contains the documentation developing with libcamera.
-
 Package: libcamera0.2
 Architecture: any
 Depends: libcamera-ipa,
