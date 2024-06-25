@@ -66,4 +66,4 @@ static CamHelper *create()
 	return new CamHelperVd56g3();
 }
 
-static RegisterCamHelper reg("st-vd56g3", &create);
+static RegisterCamHelper reg("vd56g3", &create);
