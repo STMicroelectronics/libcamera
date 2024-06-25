@@ -1,3 +1,9 @@
+libcamera (0.2.0+rpt20240418+st20240625-1) stable; urgency=medium
+
+  * New upstream release
+
+ -- Benjamin Mugnier <benjamin.mugnier@st.com>  Tue, 25 Jun 2024 11:04:21 +0200
+
 libcamera (0.2.0+rpt20240418-2) stable; urgency=medium
 
   * Don't build documentation
