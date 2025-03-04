@@ -57,7 +57,7 @@ pipeline {
 						rtUpload (
 							serverId: 'artifactory-azure',
 							spec: """{ "files": [ {
-									"pattern": "*libcamera*.deb",
+									"pattern": "libcamera-ipa*.deb",
 									"target": "imgswlinux-raspios-local/pool/libcamera/stable/",
 									"props": "deb.distribution=stable;deb.component=main;deb.architecture=arm64"
 								} ] }"""
@@ -66,7 +66,7 @@ pipeline {
 						rtUpload (
 							serverId: 'artifactory-azure',
 							spec: '''{ "files": [ {
-									"pattern": "*libcamera*.deb",
+									"pattern": "libcamera-ipa*.deb",
 									"target": "imgswlinux-raspios-local/pool/libcamera/unstable/",
 									"props": "deb.distribution=unstable;deb.component=main;deb.architecture=arm64"
 								} ] }'''
