@@ -24,54 +24,36 @@ pipeline {
 				}
 			}
 		}
-		stage('Package') {
+		stage('Build') {
 			steps {
 				dir('pristine') {
-					/*
-					 * Remove build folder before as Jenkins caches
-					 * builds.
-					 */
-					sh 'rm -rf build/'
-					dir('debianizer') {
-						git credentialsId: 'af76724f-9593-4f6c-a5cc-1548eb8b0e14',
-							url: 'ssh://gitolite@codex.cro.st.com/img-application-sw-linux/debianizer.git'
-					}
 					script {
-						if (env.BRANCH_NAME == 'debian') {
-							sh 'debianizer/debianizer.sh'
-						} else {
-							sh 'debianizer/debianizer.sh --use-origin --snapshot'
-						}
+						sh 'meson setup build --buildtype=release -Dpipelines=rpi/vc4,rpi/pisp -Dipas=rpi/vc4,rpi/pisp -Dv4l2=true -Dgstreamer=enabled -Dtest=false -Dlc-compliance=disabled -Dcam=disabled -Dqcam=disabled -Ddocumentation=disabled -Dpycamera=enabled'
+						sh 'ninja -C build'
 					}
 				}
 			}
 		}
-		stage('Upload') {
-			when { anyOf {
-				environment name: 'BRANCH_NAME', value: 'main';
+		stage('Package') {
+			when {
 				environment name: 'BRANCH_NAME', value: 'debian'
-			}}
+			}
 			steps {
-				script {
-					if (env.BRANCH_NAME == 'debian') {
-						rtUpload (
-							serverId: 'artifactory-azure',
-							spec: """{ "files": [ {
-									"pattern": "libcamera-ipa*.deb",
-									"target": "imgswlinux-raspios-local/pool/libcamera/stable/",
-									"props": "deb.distribution=stable;deb.component=main;deb.architecture=arm64"
-								} ] }"""
-						)
-					} else {
-						rtUpload (
-							serverId: 'artifactory-azure',
-							spec: '''{ "files": [ {
-									"pattern": "libcamera-ipa*.deb",
-									"target": "imgswlinux-raspios-local/pool/libcamera/unstable/",
-									"props": "deb.distribution=unstable;deb.component=main;deb.architecture=arm64"
-								} ] }'''
-						)
+				dir('pristine') {
+					script {
+						sh 'dpkg-buildpackage -us -uc -b'
+						sh 'lintian || true'
 					}
+				}
+				script {
+					rtUpload (
+						serverId: 'artifactory-azure',
+						spec: """{ "files": [ {
+								"pattern": "libcamera-ipa*.deb",
+								"target": "imgswlinux-raspios-local/pool/libcamera/stable/",
+								"props": "deb.distribution=stable;deb.component=main;deb.architecture=arm64"
+							} ] }"""
+					)
 				}
 			}
 		}
