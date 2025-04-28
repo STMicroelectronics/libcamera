@@ -1,3 +1,9 @@
+libcamera (0.5.0+rpt20250429+st20250505-1) bookworm; urgency=medium
+
+  * New upstream version 0.5.0+rpt20250429+st20250505
+
+ -- Benjamin Mugnier <benjamin.mugnier@st.com>  Mon, 05 May 2025 14:30:21 +0200
+
 libcamera (0.5.0+rpt20250429-1) bookworm; urgency=medium
 
   * New upstream version 0.5.0+rpt20250429
