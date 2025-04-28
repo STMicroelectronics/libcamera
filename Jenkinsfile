@@ -49,7 +49,7 @@ pipeline {
 					rtUpload (
 						serverId: 'artifactory-azure',
 						spec: """{ "files": [ {
-								"pattern": "libcamera-ipa*.deb",
+								"pattern": "*libcamera*.deb",
 								"target": "imgswlinux-raspios-local/pool/libcamera/stable/",
 								"props": "deb.distribution=stable;deb.component=main;deb.architecture=arm64"
 							} ] }"""
