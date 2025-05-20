@@ -38,12 +38,12 @@ CamHelperVd55g0::CamHelperVd55g0()
 
 uint32_t CamHelperVd55g0::gainCode(double gain) const
 {
-	return static_cast<uint32_t>(gain * 16.0);
+	return static_cast<uint32_t>(32.0 - 32.0 / gain);
 }
 
 double CamHelperVd55g0::gain(uint32_t gainCode) const
 {
-	return static_cast<double>(gainCode) / 16.0;
+	return static_cast<double>(32.0 / (32 - gainCode));
 }
 
 static CamHelper *create()
