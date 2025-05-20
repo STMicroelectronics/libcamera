@@ -63,7 +63,7 @@ uint32_t CamHelperVd1941::gainCode(double gain) const
 
 double CamHelperVd1941::gain(uint32_t gainCode) const
 {
-	return 16.0 / (16.0 - static_cast<double>(gainCode));
+	return static_cast<double>(16.0 / (16 - gainCode));
 }
 
 uint32_t CamHelperVd1941::exposureLines(const Duration exposure,
