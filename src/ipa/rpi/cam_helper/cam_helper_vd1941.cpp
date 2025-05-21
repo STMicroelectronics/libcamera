@@ -6,14 +6,10 @@
  */
 
 #include <assert.h>
-#include <cmath>
-#include <stddef.h>
 
 #include "cam_helper.h"
 
 using namespace RPiController;
-using libcamera::utils::Duration;
-using namespace std::literals::chrono_literals;
 
 class CamHelperVd1941 : public CamHelper
 {
@@ -21,8 +17,6 @@ public:
 	CamHelperVd1941();
 	uint32_t gainCode(double gain) const override;
 	double gain(uint32_t gainCode) const override;
-	uint32_t exposureLines(const Duration exposure, const Duration lineLength) const override;
-	Duration exposure(uint32_t exposureLines, const Duration lineLength) const override;
 
 private:
 	/*
@@ -33,17 +27,6 @@ private:
 	 * TODO : need characterization from application/validation team
 	 */
 	static constexpr int frameIntegrationDiff = 100;
-	/*
-	 * minExposureLines is dependant of Shutter mode :
-	 *  - 4 in Global Shutter
-	 *  - 2 in Rolling Shutter
-	 */
-	static constexpr uint32_t minExposureLines = 4;
-	/*
-	 * Line length is currently fixed to 3372.
-	 * With a default pixel clock of 93.75 MHz, the corresponding line time is 8.992 µs.
-	 */
-	static constexpr Duration timePerLine = 8.992us;
 };
 
 /*
@@ -64,18 +47,6 @@ uint32_t CamHelperVd1941::gainCode(double gain) const
 double CamHelperVd1941::gain(uint32_t gainCode) const
 {
 	return static_cast<double>(16.0 / (16 - gainCode));
-}
-
-uint32_t CamHelperVd1941::exposureLines(const Duration exposure,
-					[[maybe_unused]] const Duration lineLength) const
-{
-	return std::max<uint32_t>(minExposureLines, exposure / timePerLine);
-}
-
-Duration CamHelperVd1941::exposure(uint32_t exposureLines,
-				   [[maybe_unused]] const Duration lineLength) const
-{
-	return std::max<uint32_t>(minExposureLines, exposureLines) * timePerLine;
 }
 
 static CamHelper *create()
