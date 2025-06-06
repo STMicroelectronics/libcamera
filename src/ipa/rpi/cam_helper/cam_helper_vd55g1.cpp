@@ -23,7 +23,7 @@ private:
 	 * Smallest difference between the frame length and integration time,
 	 * in units of lines.
 	 */
-	static constexpr int frameIntegrationDiff = 4;
+	static constexpr int frameIntegrationDiff = 64;
 };
 
 /*
@@ -38,12 +38,12 @@ CamHelperVd55g1::CamHelperVd55g1()
 
 uint32_t CamHelperVd55g1::gainCode(double gain) const
 {
-	return static_cast<uint32_t>(gain * 16.0);
+	return static_cast<uint32_t>(32.0 - 32.0 / gain);
 }
 
 double CamHelperVd55g1::gain(uint32_t gainCode) const
 {
-	return static_cast<double>(gainCode) / 16.0;
+	return 32.0 / (32.0 - static_cast<double>(gainCode));
 }
 
 static CamHelper *create()

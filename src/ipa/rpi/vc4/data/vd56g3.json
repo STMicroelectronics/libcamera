@@ -9,9 +9,6 @@
             }
         },
         {
-            "rpi.dpc": { }
-        },
-        {
             "rpi.lux":
             {
                 "reference_shutter_speed": 17247,
