@@ -9,24 +9,11 @@
             }
         },
         {
-            "rpi.lux":
+            "rpi.awb":
             {
-                "reference_shutter_speed": 2000,
-                "reference_gain": 1.0,
-                "reference_aperture": 1.0,
-                "reference_lux": 800,
-                "reference_Y": 20000
+                "use_derivatives": 0,
+                "bayes": 0
             }
-        },
-        {
-            "rpi.noise":
-            {
-                "reference_constant": 0,
-                "reference_slope": 2.5
-            }
-        },
-        {
-            "rpi.sdn": { }
         },
         {
             "rpi.agc":
@@ -35,7 +22,10 @@
                 {
                     "centre-weighted":
                     {
-                        "weights": [ 4, 4, 4, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0 ]
+                        "weights":
+                        [
+                            4, 4, 4, 2, 2, 2, 2, 1, 1, 1, 1, 0, 0, 0, 0
+                        ]
                     }
                 },
                 "exposure_modes":
@@ -43,7 +33,17 @@
                     "normal":
                     {
                         "shutter": [ 100, 15000, 30000, 60000, 120000 ],
-                        "gain": [ 1.0, 2.0, 3.0, 4.0, 8.0 ]
+                        "gain": [ 1.0, 2.0, 3.0, 4.0, 6.0 ]
+                    },
+                    "short":
+                    {
+                        "shutter": [ 100, 5000, 10000, 20000, 30000 ],
+                        "gain": [ 1.0, 2.0, 4.0, 6.0, 8.0 ]
+                    },
+                    "long":
+                    {
+                        "shutter": [ 1000, 30000, 60000, 90000, 120000 ],
+                        "gain": [ 1.0, 2.0, 4.0, 6.0, 12.0 ]
                     }
                 },
                 "constraint_modes":
@@ -70,11 +70,19 @@
             }
         },
         {
-            "rpi.alsc":
+            "rpi.ccm":
             {
-                "n_iter": 0,
-                "luminance_strength": 1.0,
-                "corner_strength": 1.5
+                "ccms": [
+                    {
+                        "ct": 4000,
+                        "ccm":
+                        [
+                            2.0, -1.0, 0.0,
+                            -0.5, 2.0, -0.5,
+                            0, -1.0, 2.0
+                        ]
+                    }
+                ]
             }
         },
         {
