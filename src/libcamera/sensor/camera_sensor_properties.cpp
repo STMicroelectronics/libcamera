@@ -475,7 +475,7 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 * 1: "Dgrey"
 				 */
 			},
-			.sensorDelays = { //TODO
+			.sensorDelays = {
 				.exposureDelay = 2,
 				.gainDelay = 2,
 				.vblankDelay = 2,
@@ -497,7 +497,7 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 * 6: "Dgrey"
 				 */
 			},
-			.sensorDelays = { //TODO
+			.sensorDelays = {
 				.exposureDelay = 2,
 				.gainDelay = 2,
 				.vblankDelay = 2,
@@ -514,7 +514,7 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 * 1: "Diagonal Gray Scale"
 				 */
 			},
-			.sensorDelays = { //TODO
+			.sensorDelays = {
 				.exposureDelay = 2,
 				.gainDelay = 2,
 				.vblankDelay = 2,
@@ -535,7 +535,7 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 * 5: "Diagonal Gray Scale"
 				 */
 			},
-			.sensorDelays = { //TODO
+			.sensorDelays = {
 				.exposureDelay = 2,
 				.gainDelay = 2,
 				.vblankDelay = 2,
