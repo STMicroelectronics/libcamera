@@ -466,7 +466,7 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 			},
 			.sensorDelays = { },
 		} },
-		{ "vd1941", {
+		{ "vd1943", {
 			.unitCellSize = { 2250, 2250 },
 			.testPatternModes = {
 				{ controls::draft::TestPatternModeOff, 0 },

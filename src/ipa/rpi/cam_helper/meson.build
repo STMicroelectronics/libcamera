@@ -15,7 +15,7 @@ rpi_ipa_cam_helper_sources = files([
     'cam_helper_ov64a40.cpp',
     'cam_helper_ov7251.cpp',
     'cam_helper_ov9281.cpp',
-    'cam_helper_vd1941.cpp',
+    'cam_helper_vd1943.cpp',
     'cam_helper_vd55g0.cpp',
     'cam_helper_vd56g3.cpp',
     'cam_helper_vd55g1.cpp',
