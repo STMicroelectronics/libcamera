@@ -2,7 +2,7 @@
 /*
  * Copyright (C) STMicroelectronics SA 2024
  *
- * cam_helper_vd1941.cpp - camera information for vd1941 sensor
+ * Camera information for vd1941 sensor
  */
 
 #include <assert.h>
