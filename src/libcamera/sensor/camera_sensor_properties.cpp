@@ -467,7 +467,7 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 			.sensorDelays = { },
 		} },
 		{ "vd1941", {
-			.unitCellSize = { 2160, 2160 },
+			.unitCellSize = { 2250, 2250 },
 			.testPatternModes = {
 				{ controls::draft::TestPatternModeOff, 0 },
 				/*
@@ -483,7 +483,7 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 			},
 		} },
 		{ "vd55g0", {
-			.unitCellSize = { 2160, 2160 },
+			.unitCellSize = { 2610, 2610 },
 			.testPatternModes = {
 				{ controls::draft::TestPatternModeOff, 0 },
 				{ controls::draft::TestPatternModeSolidColor, 1},
@@ -522,7 +522,7 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 			},
 		} },
 		{ "vd56g3", {
-			.unitCellSize = { 2160, 2160 },
+			.unitCellSize = { 2610, 2610 },
 			.testPatternModes = {
 				{ controls::draft::TestPatternModeOff, 0 },
 				{ controls::draft::TestPatternModeSolidColor, 1 },
