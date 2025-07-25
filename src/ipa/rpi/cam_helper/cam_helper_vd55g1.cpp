@@ -2,7 +2,7 @@
 /*
  * Copyright (C) STMicroelectronics SA 2025
  *
- * cam_helper_vd55g1.cpp - camera information for vd55g1 sensor
+ * Camera information for vd55g1 sensor
  */
 
 #include <assert.h>
