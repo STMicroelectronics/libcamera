@@ -1,3 +1,9 @@
+libcamera (0.5.0+rpt20250429+st20250726-1) bookworm; urgency=medium
+
+  * New upstream version 0.5.0+rpt20250429+st20250726
+
+ -- Sylvain Petinot <sylvain.petinot@st.com>  Sat, 26 Jul 2025 17:13:39 +0200
+
 libcamera (0.5.0+rpt20250429+st20250606-1) bookworm; urgency=medium
 
   * New upstream version 0.5.0+rpt20250429+st20250606
