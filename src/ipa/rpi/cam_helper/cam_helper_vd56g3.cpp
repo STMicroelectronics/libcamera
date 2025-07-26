@@ -2,7 +2,7 @@
 /*
  * Copyright (C) STMicroelectronics SA 2025
  *
- * cam_helper_vd56g3.cpp - camera information for vd56g3 sensor
+ * Camera information for vd56g3 sensor
  */
 
 #include <assert.h>
