@@ -41,18 +41,37 @@ pipeline {
 			steps {
 				dir('pristine') {
 					script {
+						/* Debian package */
 						sh 'dpkg-buildpackage -us -uc -b'
 						sh 'lintian || true'
+
+						/* Zip */
+						sh '''
+							VERSION=$(grep "^libcamera (" debian/changelog | head -1 | sed -E 's/libcamera \\(([^)-]+).*/\\1/')
+							git archive -v --prefix src/ -o libcamera\$VERSION.zip HEAD
+							mv libcamera\$VERSION.zip ..
+							cd ..
+							zip -u libcamera\$VERSION.zip $(ls libcamera[0-9]*.deb | grep -v dbg)
+							zip -u libcamera\$VERSION.zip $(ls libcamera-ipa*.deb | grep -v dbg)
+						'''
 					}
 				}
 				script {
 					rtUpload (
 						serverId: 'artifactory-azure',
-						spec: """{ "files": [ {
-								"pattern": "*libcamera*.deb",
-								"target": "imgswlinux-raspios-local/pool/libcamera/stable/",
-								"props": "deb.distribution=stable;deb.component=main;deb.architecture=arm64"
-							} ] }"""
+						spec: '''{
+							"files": [
+								{
+									"pattern": "*libcamera*.deb",
+									"target": "imgswlinux-raspios-local/pool/libcamera/stable/",
+									"props": "deb.distribution=stable;deb.component=main;deb.architecture=arm64"
+								},
+								{
+									"pattern": "libcamera*.zip",
+									"target": "imgswlinux-releases-imgappswlinux-codex-st-com/libcamera/"
+								}
+							]
+						}'''
 					)
 				}
 			}

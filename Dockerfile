@@ -8,7 +8,7 @@ RUN echo "deb http://archive.raspberrypi.com/debian/ bookworm main" >> /etc/apt/
 RUN echo "deb-src http://archive.raspberrypi.com/debian/ bookworm main" >> /etc/apt/sources.list.d/raspi.list
 RUN wget -q http://archive.raspberrypi.com/debian/raspberrypi.gpg.key -O- | apt-key add -
 RUN apt-get update
-RUN apt install git devscripts -y
+RUN apt install git devscripts zip -y
 
 #Get libcamera build requirements
 RUN apt build-dep libcamera -y
