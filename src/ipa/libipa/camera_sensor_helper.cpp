@@ -757,6 +757,18 @@ public:
 };
 REGISTER_CAMERA_SENSOR_HELPER("vd1943", CameraSensorHelperVd1943)
 
+class CameraSensorHelperVd55g0 : public CameraSensorHelper
+{
+public:
+	CameraSensorHelperVd55g0()
+	{
+		/* From datasheet: 0x40 at 10bits. */
+		blackLevel_ = 4096;
+		gain_ = AnalogueGainLinear{ 0, 32, -1, 32 };
+	}
+};
+REGISTER_CAMERA_SENSOR_HELPER("vd55g0", CameraSensorHelperVd55g0)
+
 class CameraSensorHelperVd56g3 : public CameraSensorHelper
 {
 public:
