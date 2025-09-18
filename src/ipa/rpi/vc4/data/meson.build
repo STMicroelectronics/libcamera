@@ -29,6 +29,7 @@ conf_files = files([
     'ov9281_mono.json',
     'se327m12.json',
     'uncalibrated.json',
+    'vd1943_mono.json',
     'vd55g1.json',
     'vd55g1_mono.json',
     'vd56g3.json',
