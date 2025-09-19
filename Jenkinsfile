@@ -6,6 +6,8 @@ pipeline {
 	agent {
 		docker {
 			image 'artifactory.st.com/imgswlinux-docker/raspios_libcamera_pkg_arm64v8:bookworm'
+			registryUrl 'https://artifactory.st.com'
+			registryCredentialsId 'fbde3d7c-2aa1-4fc9-85c4-67c88b4baf61'
 		}
 	}
 	options {
