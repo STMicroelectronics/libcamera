@@ -1,3 +1,9 @@
+libcamera (0.5.2+rpt20250903+st20251128) trixie; urgency=medium
+
+  * New upstream version 0.5.2+rpt20250903+st20251128
+
+ -- Benjamin Mugnier <benjamin.mugnier@st.com>  Fri, 28 Nov 2025 10:20:53 +0100
+
 libcamera (0.5.2+rpt20250903+st20250919-1~bpo12+1) bookworm; urgency=medium
 
   * New upstream version 0.5.2+rpt20250903+st20250919
