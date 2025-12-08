@@ -44,7 +44,7 @@ pipeline {
 				dir('pristine') {
 					script {
 						/* Debian package */
-						sh 'dpkg-buildpackage -us -uc -b'
+						sh 'dpkg-buildpackage -us -uc -b -P nodoc'
 						sh 'lintian || true'
 
 						/* Zip */
