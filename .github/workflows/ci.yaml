@@ -1,0 +1,96 @@
+
+name: CI
+
+on: [push]
+
+jobs:
+  Build:
+    runs-on: dind
+    container:
+      image: artifactory.st.com/imgswlinux-docker/raspios_libcamera_pkg_arm64v8:trixie
+      volumes:
+        - /usr/local/share/ca-certificates:/usr/local/share/ca-certificates
+
+    steps:
+      - name: Update cert
+        run: |
+          update-ca-certificates
+
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+          # Mimic official Raspberry Pi build procedure : https://www.raspberrypi.com/documentation/computers/camera_software.html
+          meson setup build --buildtype=release -Dpipelines=rpi/vc4,rpi/pisp -Dipas=rpi/vc4,rpi/pisp -Dv4l2=true -Dgstreamer=enabled -Dtest=false -Dlc-compliance=disabled -Dcam=disabled -Dqcam=disabled -Ddocumentation=disabled -Dpycamera=enabled
+          ninja -C build
+
+  Package:
+    needs: build
+    runs-on: dind
+    if: github.ref == 'refs/heads/debian'
+    container:
+      image: artifactory.st.com/imgswlinux-docker/raspios_libcamera_pkg_arm64v8:trixie
+      volumes:
+        - /usr/local/share/ca-certificates:/usr/local/share/ca-certificates
+
+    steps:
+      - name: Update cert
+        run: |
+          update-ca-certificates
+
+      - name: Check out
+        uses: actions/checkout@v4
+        with:
+          path: pristine
+
+      - name: Clean previous artifacts
+        run: |
+          rm -rf ../*.zip
+          rm -rf ../*.deb
+
+      - name: Build packages
+        run: |
+          # Skipping tests on docker
+          DEB_BUILD_OPTIONS="nocheck" dpkg-buildpackage -us -uc -b
+          lintian || true
+
+      - name: Zip release
+        run: |
+          VERSION=$(head -1 debian/changelog | sed -E -n 's/.*\((.*)\).*$/\1/p')
+          echo "Version : ${VERSION}"
+          git config --global --add safe.directory /__w/libcamera/libcamera
+          git archive -v --prefix src/ -o libcamera${VERSION}.zip HEAD
+          mv libcamera${VERSION}.zip ..
+          cd ..
+          zip -u libcamera${VERSION}.zip $(ls libcamera[0-9]*.deb | grep -v dbg)
+          zip -u libcamera${VERSION}.zip $(ls libcamera-ipa*.deb | grep -v dbg)
+
+      - name: Upload packages
+        run: |
+          FILES=$(ls ../*.deb)
+          for FILE in $FILES
+          do
+            echo "Uploading $(basename $FILE)"
+
+            MD5_CHECKSUM=$(md5sum ${FILE} | awk '{ print $1 }')
+            SHA1_CHECKSUM=$(shasum ${FILE} | awk '{ print $1 }')
+
+            curl -f -s -S \
+              -u ${{ vars.APPLICATIVE_ACCOUNT_NAME }}:${{ secrets.APPLICATIVE_ACCOUNT_PASSWORD }} \
+              -T ${FILE} \
+              -H "X-Checksum-Sha1:${SHA1_CHECKSUM}" \
+              -H "X-Checksum-MD5:${MD5_CHECKSUM}" \
+              -XPUT "https://artifactory.st.com/artifactory/imgswlinux-raspios-local/pool/libcamera/stable/$(basename $FILE);deb.distribution=stable;deb.component=main;deb.architecture=armhf,arm64"
+          done
+
+      - name: Upload release
+        run: |
+          FILE=$(ls ../*.zip)
+          echo "Uploading $(basename $FILE)"
+          curl -f -s -S \
+            -u ${{ vars.APPLICATIVE_ACCOUNT_NAME }}:${{ secrets.APPLICATIVE_ACCOUNT_PASSWORD }} \
+            -T ${FILE} \
+            -H "X-Checksum-Sha1:${SHA1_CHECKSUM}" \
+            -H "X-Checksum-MD5:${MD5_CHECKSUM}" \
+            -XPUT "https://artifactory.st.com/artifactory/imgswlinux-releases-imgappswlinux-codex-st-com/libcamera/$(basename $FILE)"
