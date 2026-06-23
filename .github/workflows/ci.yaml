@@ -69,7 +69,7 @@ jobs:
               -T ${FILE} \
               -H "X-Checksum-Sha1:${SHA1_CHECKSUM}" \
               -H "X-Checksum-MD5:${MD5_CHECKSUM}" \
-              -XPUT "https://artifactory.st.com/artifactory/imgswlinux-raspios-local/pool/libcamera/stable/$(basename $FILE);deb.distribution=stable;deb.component=main;deb.architecture=armhf,arm64"
+              -XPUT "https://artifactory.st.com/artifactory/imgswlinux-raspios-local/pool/libcamera/stable/$(basename $FILE);deb.distribution=stable;deb.component=main;deb.architecture=arm64"
           done
 
       - name: Upload release
