@@ -19,6 +19,12 @@
             }
         },
         {
+            "rpi.dpc":
+            {
+                "strength": 1
+            }
+        },
+        {
             "rpi.noise":
             {
                 "reference_constant": 0,
