@@ -1,3 +1,9 @@
+libcamera (0.7.2+rpt20260817+st20260908-1) trixie; urgency=medium
+
+  * New upstream version 0.7.2+rpt20260817+st20260908
+
+ -- Benjamin Mugnier <benjamin.mugnier@st.com>  Tue, 08 Sep 2026 14:51:44 +0200
+
 libcamera (0.7.2+rpt20260817-1) trixie; urgency=medium
 
   * New upstream version 0.7.2+rpt20260817
