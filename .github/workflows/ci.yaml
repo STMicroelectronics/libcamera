@@ -5,7 +5,7 @@ on: [push]
 
 jobs:
   Build:
-    runs-on: dind
+    runs-on: [arm64, ubuntu24]
     container:
       image: artifactory.st.com/imgswlinux-docker/raspios_libcamera_pkg_arm64v8:trixie
 
@@ -20,8 +20,8 @@ jobs:
           ninja -C build
 
   Package:
-    needs: build
-    runs-on: dind
+    needs: Build
+    runs-on: [arm64, ubuntu24]
     if: github.ref == 'refs/heads/debian'
     container:
       image: artifactory.st.com/imgswlinux-docker/raspios_libcamera_pkg_arm64v8:trixie
