@@ -591,10 +591,10 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 */
 			},
 			.sensorDelays = {
-				.exposureDelay = 2,
-				.gainDelay = 2,
-				.vblankDelay = 2,
-				.hblankDelay = 2
+				.exposureDelay = 3,
+				.gainDelay = 3,
+				.vblankDelay = 3,
+				.hblankDelay = 3
 			},
 		} },
 		{ "vd55g0", {
@@ -613,10 +613,10 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 */
 			},
 			.sensorDelays = {
-				.exposureDelay = 2,
-				.gainDelay = 2,
-				.vblankDelay = 2,
-				.hblankDelay = 2
+				.exposureDelay = 3,
+				.gainDelay = 3,
+				.vblankDelay = 3,
+				.hblankDelay = 3
 			},
 		} },
 		{ "vd55g1", {
@@ -630,10 +630,10 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 */
 			},
 			.sensorDelays = {
-				.exposureDelay = 2,
-				.gainDelay = 2,
-				.vblankDelay = 2,
-				.hblankDelay = 2
+				.exposureDelay = 3,
+				.gainDelay = 3,
+				.vblankDelay = 3,
+				.hblankDelay = 3
 			},
 		} },
 		{ "vd56g3", {
@@ -651,10 +651,10 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 */
 			},
 			.sensorDelays = {
-				.exposureDelay = 2,
-				.gainDelay = 2,
-				.vblankDelay = 2,
-				.hblankDelay = 2
+				.exposureDelay = 3,
+				.gainDelay = 3,
+				.vblankDelay = 3,
+				.hblankDelay = 3
 			},
 		} },
 	};
