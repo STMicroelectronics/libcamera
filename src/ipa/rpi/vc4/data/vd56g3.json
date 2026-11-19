@@ -1,6 +1,7 @@
 {
     "version": 2.0,
     "target": "bcm2835",
+    "comment": "HD-61201 lens",
     "algorithms": [
         {
             "rpi.black_level":
