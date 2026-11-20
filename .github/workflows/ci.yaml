@@ -8,6 +8,9 @@ jobs:
     runs-on: [arm64, ubuntu24]
     container:
       image: artifactory.st.com/imgswlinux-docker/raspios_libcamera_pkg_arm64v8:trixie
+      credentials:
+        username: ${{ vars.APPLICATIVE_ACCOUNT_NAME }}
+        password: ${{ secrets.APPLICATIVE_ACCOUNT_PASSWORD }}
 
     steps:
       - name: Check out
@@ -25,6 +28,9 @@ jobs:
     if: github.ref == 'refs/heads/debian'
     container:
       image: artifactory.st.com/imgswlinux-docker/raspios_libcamera_pkg_arm64v8:trixie
+      credentials:
+        username: ${{ vars.APPLICATIVE_ACCOUNT_NAME }}
+        password: ${{ secrets.APPLICATIVE_ACCOUNT_PASSWORD }}
 
     steps:
       - name: Check out
