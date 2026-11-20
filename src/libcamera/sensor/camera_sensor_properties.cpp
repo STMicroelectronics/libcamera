@@ -581,6 +581,44 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 			},
 			.sensorDelays = { },
 		} },
+		{ "vd1943", {
+			.unitCellSize = { 2250, 2250 },
+			.testPatternModes = {
+				{ controls::draft::TestPatternModeOff, 0 },
+				/*
+				 * No corresponding test pattern mode for:
+				 * 1: "Dgrey"
+				 */
+			},
+			.sensorDelays = {
+				.exposureDelay = 3,
+				.gainDelay = 3,
+				.vblankDelay = 3,
+				.hblankDelay = 3
+			},
+		} },
+		{ "vd55g0", {
+			.unitCellSize = { 2610, 2610 },
+			.testPatternModes = {
+				{ controls::draft::TestPatternModeOff, 0 },
+				{ controls::draft::TestPatternModeSolidColor, 1},
+				{ controls::draft::TestPatternModeColorBars, 2},
+				{ controls::draft::TestPatternModeColorBarsFadeToGray, 3},
+				{ controls::draft::TestPatternModePn9, 7},
+				/*
+				 * No corresponding test pattern mode for:
+				 * 4: "Hgrey"
+				 * 5: "Vgrey"
+				 * 6: "Dgrey"
+				 */
+			},
+			.sensorDelays = {
+				.exposureDelay = 3,
+				.gainDelay = 3,
+				.vblankDelay = 3,
+				.hblankDelay = 3
+			},
+		} },
 		{ "vd55g1", {
 			.unitCellSize = { 2160, 2160 },
 			.testPatternModes = {
@@ -592,10 +630,10 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 */
 			},
 			.sensorDelays = {
-				.exposureDelay = 2,
-				.gainDelay = 2,
-				.vblankDelay = 2,
-				.hblankDelay = 2
+				.exposureDelay = 3,
+				.gainDelay = 3,
+				.vblankDelay = 3,
+				.hblankDelay = 3
 			},
 		} },
 		{ "vd56g3", {
@@ -613,10 +651,10 @@ const CameraSensorProperties *CameraSensorProperties::get(const std::string &sen
 				 */
 			},
 			.sensorDelays = {
-				.exposureDelay = 2,
-				.gainDelay = 2,
-				.vblankDelay = 2,
-				.hblankDelay = 2
+				.exposureDelay = 3,
+				.gainDelay = 3,
+				.vblankDelay = 3,
+				.hblankDelay = 3
 			},
 		} },
 	};
